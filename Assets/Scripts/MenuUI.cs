@@ -9,7 +9,7 @@ public class MenuUI : MonoBehaviour
     {
         if (NicknameData.Instance.nickname != "")
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         else
         {
@@ -24,5 +24,10 @@ public class MenuUI : MonoBehaviour
         #else 
             Application.Quit();
         #endif
+    }
+
+    public void GoToTop()
+    {
+        SceneManager.LoadScene(1);
     }
 }

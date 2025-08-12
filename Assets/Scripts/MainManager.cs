@@ -24,10 +24,10 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         const float step = 0.6f;
+        NicknameData.Instance.UpdateBestScoreText(BestScoreText);
         int perLine = Mathf.FloorToInt(4.0f / step);
-        UpdateBestScoreText();
-        
         int[] pointCountArray = new [] {1,1,2,2,5,5};
+        
         for (int i = 0; i < LineCount; ++i)
         {
             for (int x = 0; x < perLine; ++x)
@@ -71,18 +71,17 @@ public class MainManager : MonoBehaviour
         if (m_Points > NicknameData.Instance.bestScore)
         {   
             NicknameData.Instance.UpdateBestScore(m_Points);
-            UpdateBestScoreText();
+            NicknameData.Instance.UpdateBestScoreText(BestScoreText);
         }
     }
 
     public void GameOver()
     {
+        NicknameData.Instance.UpdateTop(m_Points);
+        NicknameData.Instance.SaveTop();
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
 
-    private void UpdateBestScoreText()
-    {
-        BestScoreText.text = $"Best Score: {NicknameData.Instance.bestScoreNickname} :{NicknameData.Instance.bestScore}";
-    }
+
 }
